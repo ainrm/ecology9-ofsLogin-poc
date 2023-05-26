@@ -24,7 +24,7 @@ def loginIdScan(url, uid):
         if data.get("loginId"):
             loginIds.append("loginId")
     except:
-        print('[+] {}, 可能不存在漏洞！'.format(url))
+        print("[+] {}, 可能不存在漏洞！".format(url))
         exit()
 
 
@@ -39,9 +39,9 @@ def getCookie():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Read file line by line.')
-    parser.add_argument('-f', '--file', type=str, required=True, help='uid.txt')
-    parser.add_argument('-u', '--target', type=str, required=True, help='url')
+    parser = argparse.ArgumentParser(description="Read file line by line.")
+    parser.add_argument("-f", "--file", type=str, required=True, help="uid.txt")
+    parser.add_argument("-u", "--target", type=str, required=True, help="url")
     args = parser.parse_args()
 
     if not (args.file and args.target):
@@ -53,8 +53,3 @@ if __name__ == "__main__":
         for line in file:
             loginIds = loginIdScan(args.target, line.strip())
         print(loginIds)
-
-
-
-
-
