@@ -49,7 +49,7 @@ def loginIdScan(url):
         parsed_url = urlparse(url)
         target = parsed_url.scheme + "://" + parsed_url.netloc + path
         try:
-            response = requests.get(target, headers=headers, verify=False, allow_redirects=False, proxies=proxies)
+            response = requests.get(target, headers=headers, verify=False, allow_redirects=False)#, proxies=proxies)
             if response.status_code == 200:
                 data = json.loads(response.text)
                 loginId = data.get("loginId", -1)
