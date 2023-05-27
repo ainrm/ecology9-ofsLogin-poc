@@ -69,7 +69,7 @@ if __name__ == "__main__":
     parser.add_argument("-U", "--urls", type=str, required=False, help="urls.txt")
     args = parser.parse_args()
 
-    randomNums = getRandomNum(5)
+    randomNums = getRandomNum(30)
 
     if args.url:
         loginIdScan(args.url)
