@@ -1,6 +1,7 @@
 # ecology9-ofsLogin-poc
 ecology9 changeUserInfo信息泄漏检测(☑️)及ofsLogin任意用户登录(✖️)
 
+## poc
 - `-h`
 ```bash
 $ python3 poc.py -h
@@ -31,3 +32,6 @@ $ python3 poc.py -U urls.txt
 [-] 4.4.4.4, 未发现发现loginId或不存在漏洞！
 [+] 5.5.5.5, 未发现发现loginId或不存在漏洞！
 ```
+
+### exp
+![ainrm@20230527225644](ainrm@20230527225644.png)
