@@ -17,7 +17,6 @@ def loginIdScan(url, uid):
     path = "/mobile/plugin/changeUserInfo.jsp?type=getUserid&loginId={}".format(uid)
     parsed_url = urlparse(url)
     url = parsed_url.scheme + "://" + parsed_url.netloc + path
-    print(url)
     try:
         response = requests.get(url, headers=headers)
         data = json.loads(response.text)
