@@ -22,7 +22,7 @@ def loginIdScan(url, uid):
         response = requests.get(url, headers=headers)
         data = json.loads(response.text)
         if data.get("loginId"):
-            loginIds.append("loginId")
+            loginIds.append(data.get("loginId"))
     except:
         print("[+] {}, 可能不存在漏洞！".format(url))
         exit()
