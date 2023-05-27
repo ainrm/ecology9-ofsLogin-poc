@@ -11,13 +11,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AESCoder {
-    private static final String KEY_ALGORITHM = "AES";
-    private static final String DEFAULT_CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
-    private static final String SKEY = "WEAVERECOLOGYSECURITY3.0VERSION201607150857";
-
-    public AESCoder() {
-    }
-
     public static byte[] initSecretKey(String code) {
         KeyGenerator kg = null;
 
@@ -33,72 +26,6 @@ public class AESCoder {
 
         SecretKey secretKey = kg.generateKey();
         return secretKey.getEncoded();
-    }
-
-    private static Key toKey(byte[] key) {
-        return new SecretKeySpec(key, "AES");
-    }
-
-    public static InputStream encrypt(InputStream in, String code) throws Exception {
-        byte[] key = initSecretKey(code);
-        Key k = toKey(key);
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(1, k);
-        CipherInputStream cis = new CipherInputStream(in, cipher);
-        return cis;
-    }
-
-    public static OutputStream encrypt(OutputStream out, String code) throws Exception {
-        byte[] key = initSecretKey(code);
-        Key k = toKey(key);
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(1, k);
-        CipherOutputStream cos = new CipherOutputStream(out, cipher);
-        return cos;
-    }
-
-    public static InputStream decrypt(InputStream in, String code) throws Exception {
-        byte[] key = initSecretKey(code);
-        Key k = toKey(key);
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(2, k);
-        CipherInputStream cis = new CipherInputStream(in, cipher);
-        return cis;
-    }
-
-    public static OutputStream decrypt(OutputStream out, String code) throws Exception {
-        byte[] key = initSecretKey(code);
-        Key k = toKey(key);
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(2, k);
-        CipherOutputStream cos = new CipherOutputStream(out, cipher);
-        return cos;
-    }
-
-    public static String decrypt(String sSrc, String sKey) throws Exception {
-        try {
-            if (sKey == null) {
-                sKey = "WEAVERECOLOGYSECURITY3.0VERSION201607150857";
-            }
-
-            byte[] raw = initSecretKey(sKey);
-            SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
-            Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(2, skeySpec);
-            byte[] encrypted1 = hex2byte(sSrc);
-
-            try {
-                byte[] original = cipher.doFinal(encrypted1);
-                String originalString = new String(original);
-                return originalString;
-            } catch (Exception var8) {
-                var8.printStackTrace();
-                return null;
-            }
-        } catch (Exception var9) {
-            var9.printStackTrace();
-            return null;
-        }
     }
 
     public static String encrypt(String sSrc, String sKey) throws Exception {
@@ -149,27 +76,12 @@ public class AESCoder {
         return hs.toUpperCase();
     }
 
-    public static String randomKey() {
-        String keys = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        int length = (int)(Math.random() * 16.0 + 16.0);
-        int i = 0;
-        String key = "";
-
-        while(i < length) {
-            int j = (int)(Math.random() * 61.0);
-            if (j <= 61) {
-                key = key + keys.substring(j, j + 1);
-                ++i;
-            }
-        }
-
-        return key;
-    }
-
     public static void main(String[] args) throws Exception {
-        //String encrypt = encrypt((String)"ecologyxindaoa@weaver.com.cn", (String)null);
-        String encrypt = encrypt((String)"sysadmin1", (String)"1u6skkR");
-        System.out.println(encrypt);
-        //System.out.println(decrypt((String)encrypt, (String)null));
+        String[] arr = {"admin", "test"};
+
+        for(String i : arr ){
+            String loginTokenFromThird = encrypt(i + "1", "1u6skkR"); // 生成loginTokenFromThird
+            System.out.println(loginTokenFromThird);
+        }
     }
 }
