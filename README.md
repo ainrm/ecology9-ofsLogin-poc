@@ -1,7 +1,7 @@
 # ecology9-ofsLogin
 ecology9 changeUserInfo信息泄漏检测(☑️)及ofsLogin任意用户登录(✖️)
 
-- `poc.py -h`
+- `-h`
 ```bash
 $ python3 poc.py -h
 usage: poc.py [-h] [-u URL] [-U URLS]
