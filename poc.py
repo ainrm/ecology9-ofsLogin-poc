@@ -46,8 +46,11 @@ def loginIdScan(url):
                     loginIds.append(loginId)
         except:
             print("[-] {}, 未发现发现loginId或不存在漏洞！".format(parsed_url.netloc))
-            exit()
-    print("[+] {}, 发现loginId: {}".format(parsed_url.netloc, loginIds))
+            return ""
+    if len(loginIds) > 0:
+        print("[+] {}, 发现loginId: {}".format(parsed_url.netloc, loginIds))
+    else:
+        print("[-] {}, 未发现发现loginId或不存在漏洞！".format(parsed_url.netloc))
 
 
 def getCookie():
@@ -66,7 +69,7 @@ if __name__ == "__main__":
     parser.add_argument("-U", "--urls", type=str, required=False, help="urls.txt")
     args = parser.parse_args()
 
-    randomNums = getRandomNum(50)
+    randomNums = getRandomNum(5)
 
     if args.url:
         loginIdScan(args.url)
