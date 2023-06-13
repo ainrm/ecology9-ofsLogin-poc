@@ -26,11 +26,11 @@ $ python3 poc.py -u https://1.1.1.1/
 
 ```bash
 $ python3 poc.py -U urls.txt
-[-] 1.1.1.1, 发现loginId: ['admin', 'test']
+[+] 1.1.1.1, 发现loginId: ['admin', 'test']
 [-] 2.2.2.2, 未发现发现loginId或不存在漏洞！
 [-] 3.3.3.3, 未发现发现loginId或不存在漏洞！
 [-] 4.4.4.4, 未发现发现loginId或不存在漏洞！
-[+] 5.5.5.5, 未发现发现loginId或不存在漏洞！
+[-] 5.5.5.5, 未发现发现loginId或不存在漏洞！
 ```
 
 ## exp
